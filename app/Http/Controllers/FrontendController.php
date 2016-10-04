@@ -300,21 +300,42 @@ class FrontendController extends Controller
     {
         $page = 'hoi-dap';
         $mainQuestion = null;
-
+        $middleIndexBanner = null;
         $meta_title = $meta_desc = $meta_keywords = null;
+        $headQuestion = Question::latest('updated_at')->first();
+
         if ($value) {
+
+            $middleIndexBanner = Banner::where('status', true)->where('position', 'post_middle')->get();
+            $latestNews = Post::publish()
+                ->latest('updated_at')
+                ->limit(6)
+                ->get();
+
             $mainQuestion = Question::where('slug', $value)->first();
+            $relatedQuestions = Question::latest('updated_at')->where('id', '<>', $mainQuestion->id)->limit(6)->get();
+
             $meta_title = ($mainQuestion->seo_title) ? $mainQuestion->seo_title : $mainQuestion->title;
             $meta_desc = $mainQuestion->desc;
             $meta_keywords = $mainQuestion->keywords;
+
+            return view('frontend.detail_question', compact('questions', 'mainQuestion', 'page', 'middleIndexBanner', 'relatedQuestions', 'latestNews', 'headQuestion'))
+                ->with($this->generateMeta('hoi-dap', [
+                    'title' => $meta_title,
+                    'desc' => $meta_desc,
+                    'keywords' => $meta_keywords,
+                ], $mainQuestion));
+
+        } else {
+            $questions = Question::publish()->paginate(10);
+
+            return view('frontend.question', compact('questions', 'headQuestion', 'page'))
+                ->with($this->generateMeta('hoi-dap', [
+                    'title' => $meta_title,
+                    'desc' => $meta_desc,
+                    'keywords' => $meta_keywords,
+                ], $mainQuestion));
         }
-        $questions = Question::publish()->paginate(10);
-        return view('frontend.question', compact('questions', 'mainQuestion', 'page'))
-            ->with($this->generateMeta('hoi-dap', [
-            'title' => $meta_title,
-            'desc' => $meta_desc,
-            'keywords' => $meta_keywords,
-        ], $mainQuestion));
     }
 
     public function main($value)

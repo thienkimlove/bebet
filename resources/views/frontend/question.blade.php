@@ -12,35 +12,19 @@
                     <h3 class="globalTitle">
                         <a href="{{url('hoi-dap')}}">Hỏi đáp</a>
                     </h3>
-                    @if ($mainQuestion)
+                    @if ($headQuestion)
                     <div class="headQuestion clearFix">
-                        <a href="{{url('hoi-dap', $mainQuestion->slug)}}" class="thumb">
+                        <a href="{{url('hoi-dap', $headQuestion->slug)}}" class="thumb">
                             <img src="{{url('frontend/imgs/bg/avatar.png')}}" alt="">
                         </a>
                         <h3>
-                            {{$mainQuestion->title}}
+                            {{$headQuestion->title}}
                         </h3>
                         <p>
                             Độc giả có thể gửi câu hỏi trực tiếp vào bảng đặt câu hỏi dưới đây, hoặc gửi trực tiếp vào Email:
-                            <a href="#">tuvansuckhoe.bsdinh@gmail.com</a>
-                            <a href="#">tuvanbigbb@gmail.com</a>
+                            <a href="mailto:tuvansuckhoe.bsdinh@gmail.com">tuvansuckhoe.bsdinh@gmail.com</a>
+                            <a href="mailto:contact@tuelinh.com">contact@tuelinh.com</a>
                         </p>
-
-                        <div class="content">
-                            <p>
-                                <span class="question">Câu hỏi:</span>
-                                <span>{{$mainQuestion->question}}</span>
-                            </p>
-                            <time class="time" datetime="{{$mainQuestion->updated_at->format('Y/m/d')}}">{{$mainQuestion->updated_at->format('d/m/Y')}}</time>
-                        </div>
-                        <div id="accordion">
-                            <a href="javascript:void();" class="answer">Xem trả lời</a>
-                            <div class="accordion">
-                                <div class="content">
-                                    <p>{{$mainQuestion->answer}}</p>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                     @endif
@@ -55,13 +39,8 @@
                                 </p>
                                 <time class="time" datetime="{{$question->updated_at->format('Y/m/d')}}">{{$question->updated_at->format('d/m/Y')}}</time>
                             </div>
-                            <div id="accordion{{$number}}">
-                                <a href="javascript:void();" class="answer">Xem trả lời</a>
-                                <div class="accordion">
-                                    <div class="content">
-                                        <p>{{$question->answer}}</p>
-                                    </div>
-                                </div>
+                            <div>
+                                <a href="{{url('hoi-dap', $question->slug)}}" class="answer">Xem trả lời</a>
                             </div>
                         </article>
                     @endforeach
