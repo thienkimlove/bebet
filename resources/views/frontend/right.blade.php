@@ -32,7 +32,7 @@
                  data-show-facepile="true">
                 <div class="fb-xfbml-parse-ignore">
                     <blockquote cite="{{env('FB_LINK')}}">
-                        <a href="https://www.facebook.com/tuelinh.vn">{{env('SITE_NAME')}}</a>
+                        <a href="https://www.facebook.com/Be-Birth-331454547206717/">{{env('SITE_NAME')}}</a>
                     </blockquote>
                 </div>
             </div>
