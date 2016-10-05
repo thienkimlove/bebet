@@ -25,16 +25,14 @@
         <div class="Social">
             <div class="fb-page"
                  data-href="{{env('FB_LINK')}}"
-                 data-width="100%"
                  data-small-header="false"
                  data-adapt-container-width="true"
                  data-hide-cover="false"
                  data-show-facepile="true">
-                <div class="fb-xfbml-parse-ignore">
-                    <blockquote cite="{{env('FB_LINK')}}">
-                        <a href="https://www.facebook.com/Be-Birth-331454547206717/">{{env('SITE_NAME')}}</a>
-                    </blockquote>
-                </div>
+                <blockquote cite="{{env('FB_LINK')}}"
+                            class="fb-xfbml-parse-ignore">
+                    <a href="{{env('FB_LINK')}}">Be Birth</a>
+                </blockquote>
             </div>
         </div>
     </div>

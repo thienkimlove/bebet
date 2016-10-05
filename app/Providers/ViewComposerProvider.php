@@ -28,6 +28,7 @@ class ViewComposerProvider extends ServiceProvider
 
         view()->composer('frontend.header', function ($view) {
             $view->with('topBanners',  Banner::where('status', true)->where('position', 'top')->get());
+            $view->with('topNormalBanners',  Banner::where('status', true)->where('position', 'top_normal')->get());
             $view->with('headerProducts', Product::all());
         });
 

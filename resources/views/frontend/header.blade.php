@@ -28,7 +28,7 @@
         <a href="#" title="Menu" class="sp btnMenu" id="btnMenu">Menu</a>
     </div>
 </header>
-
+@if ($page == 'index')
 @if ($topBanners->count() > 0)
     <section class="boxBanner mb0 index">
         <div class="boxSlider">
@@ -44,4 +44,22 @@
         </div>
         <!--//box-Banner-->
     </section>
+@endif
+@else
+    @if ($topNormalBanners->count() > 0)
+        <section class="boxBanner mb0 index">
+            <div class="boxSlider">
+                <div class="owl-carousel" id="slideIndex">
+                    @foreach ($topNormalBanners as $banner)
+                        <div class="item">
+                            <a class="thumb" href="{{$banner->url}}" title="">
+                                <img src="{{url('files', $banner->image)}}"/>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <!--//box-Banner-->
+        </section>
+    @endif
 @endif
