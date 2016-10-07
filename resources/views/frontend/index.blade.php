@@ -1,200 +1,155 @@
 @extends('frontend')
 
 @section('content')
-
-    @if ($topIndexCategory)
-    <section class="section bg">
-        <div class="fix">
-            <div class="layout-home">
-                <div class="box-uses cf">
-                    <div class="title-panel cf">
-                        <div class="title">
-                            <h3 class="global-title">
-                                <a href="{{url($topIndexCategory->slug)}}">{{$topIndexCategory->name}}</a>
-                            </h3>
-                        </div>
-                        <div class="menu-tabs">
-                            <ul class="news-type">
-                                @foreach ($topIndexCategory->subCategories as $k=>$sub)
-                                <li>
-                                    <a href="javascript:void(0)" rel="nofollow" data-type="tab" data-content="tab-{{$k}}" data-parent="news-type" data-reset="news-home" title="{{$sub->name}}">
-                                        {{$sub->name}}
-                                    </a>
-                                </li>
-                                @if ($k < ($topIndexCategory->subCategories->count() - 1))
-                                <li class="line">|</li>
-                                @endif
-                               @endforeach
-                            </ul><!--//news-type-->
+    <section class="section bgImg mb0">
+        <div class="container">
+            <!-- <img src="imgs/Trang-chu.jpg" alt=""> -->
+            <div class="boxIntro">
+                <h3 class="globalTitle noneAfter">
+                    Gia đình Be Birth
+                    <p class="subTitle">Dinh dưỡng chuẩn hóa cho từng giai đoạn của thai kỳ</p>
+                </h3>
+                <div class="areaImgs">
+                    <div class="imgNumber imgN01" >
+                        <div class="contentImg">
+                            <p>
+                                Dây chuyền sản xuất GMP WHO
+                            </p>
                         </div>
                     </div>
-
-                    <div class="news-home cf" id="tab-index" style="display:block;">
-                        @foreach ($topIndexCategory->list_posts->splice(0, 3) as $post)
-                        <article class="item">
-                            <a href="" title="" class="thumbs">
-                                <img src="{{url('img/cache/310x230/'.$post->image)}}" width="310" height="230" alt=""/>
-                            </a>
-                            <h3>
-                                <a href="{{url($post->slug.'.html')}}" title="">{{$post->title}}</a>
-                            </h3>
+                    <span class="imgNumber icon01"></span>
+                    <span class="imgNumber icon02"></span>
+                    <span class="imgNumber icon03"></span>
+                    <span class="imgNumber icon04"></span>
+                    <div class="imgNumber imgN02 wow zoom-in" data-scroll-reveal="enter bottom, after 0.8s">
+                        <div class="contentImg">
+                            <p>Bổ sung hơn 20 vitamin, các nguyên tố vi lượng</p>
+                        </div>
+                    </div>
+                    <div class="imgNumber imgN03 wow zoom-in" data-scroll-reveal="enter top, after 0.8s">
+                        <div class="contentImg">
+                            <p>Các dược liệu quý cần thiết cho mẹ và bé</p>
+                        </div>
+                    </div>
+                    <div class="imgNumber imgN04 wow zoom-in" data-scroll-reveal="enter bottom, after 0.8s">
+                        <div class="contentImg">
                             <p>
-                               {{$post->desc}}
+                                Bổ sung OMEGA 3(DHA và EPA) từ nhà cung cấp EPAX - Nhà cung cấp OMEGA 3 Số 1 thế giới
                             </p>
-                            @if ($post->related_posts->count() > 0)
-                            <div class="related-post">
-                                <ul>
-                                    @foreach ($post->related_posts->splice(0, 2) as $rPost)
-                                    <li><a href="{{url($rPost->slug.'.html')}}">{{$rPost->title}}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-                        </article>
-                        @endforeach
-                    </div><!--//news-list-->
-
-                    @foreach ($topIndexCategory->subCategories as $k=>$sub)
-                    <div class="news-home cf" id="tab-{{$k}}">
-                        @foreach ($sub->list_posts->splice(0, 3) as $post)
-                            <article class="item">
-                                <a href="" title="" class="thumbs">
-                                    <img src="{{url('img/cache/310x230/'.$post->image)}}" width="310" height="230" alt=""/>
-                                </a>
-                                <h3>
-                                    <a href="{{url($post->slug.'.html')}}" title="">{{$post->title}}</a>
-                                </h3>
-                                <p>
-                                    {{$post->desc}}
-                                </p>
-                                @if ($post->related_posts->count() > 0)
-                                    <div class="related-post">
-                                        <ul>
-                                            @foreach ($post->related_posts->splice(0, 2) as $rPost)
-                                                <li><a href="{{url($rPost->slug.'.html')}}">{{$rPost->title}}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                            </article>
-                        @endforeach
-                    </div><!--//news-list-->
+                        </div>
+                    </div>
+                    <div class="imgNumber imgN05 wow zoom-in" data-scroll-reveal="enter top, after 0.8s">
+                        <div class="contentImg">
+                            <p>
+                                Thuận tiện sử dụng
+                            </p>
+                        </div>
+                    </div>
+                    <div class="imgNumber imgN06 wow zoom-in" data-scroll-reveal="enter bottom, after 0.8s">
+                        <div class="contentImg">
+                            <p>
+                                Công thức chuyên biệt phù hợp cho từng giai đoạn của mẹ và thai nhi
+                            </p>
+                        </div>
+                    </div>
+                    <div class="imgNumber imgN07 wow zoom-in" data-scroll-reveal="enter top, after 0.8s">
+                        <div class="contentImg">
+                            <p>
+                                Nguyen liệu và chất lượng Châu Âu
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="boxSlidePage bg">
+        <div class="container">
+            <h3 class="globalTitle noneAfter">
+                Cẩm nang cho mẹ và bé
+                <p class="subTitle">Bí quyết chăm sóc sức khỏe mẹ và bé</p>
+            </h3>
+            <div class="listSlidePage clearFix">
+                <div class="owl-carousel" id="slidePage">
+                    @foreach ($indexFeatureSlider as $k => $slider)
+                    <div class="{{($k < 2) ? 'item wow slideInLeft' : 'item wow slideInRight'}}" data-wow-duration="{{($k < 2) ? '0.8s' : '1s'}}" data-wow-delay="1s">
+                        <a href="{{url($slider.'.html')}}" title="{{$slider->title}}">
+                            <img src="{{url('img/cache/274x174', $slider->image)}}" width="274" height="174" alt=""/>
+                        </a>
+                        <h3>
+                            <a href="{{url($slider.'.html')}}">
+                                {{$slider->title}}
+                            </a>
+                        </h3>
+                        <p>
+                          {{$slider->desc}}
+                        </p>
+                    </div>
                     @endforeach
                 </div>
             </div>
         </div>
     </section>
-    @endif
-    <section class="section fix">
-        <div class="layout-home">
-            <div class="col-left">
-                @if ($secondIndexCategory)
-                <div class="title-panel cf">
-                    <div class="title">
-                        <h3 class="global-title">
-                            <a href="{{url($secondIndexCategory->slug)}}">{{$secondIndexCategory->name}}</a>
-                        </h3>
-                    </div>
-                    <div class="menu-tabs">
-                        <ul class="news-type">
-                            @foreach ($secondIndexCategory->subCategories as $k=>$sub)
-                                <li>
-                                    <a href="javascript:void(0)" rel="nofollow" data-type="tab" data-content="tab-2nd-{{$k}}" data-parent="news-type" data-reset="news-list" title="{{$sub->name}}">
-                                        {{$sub->name}}</a>
-                                </li>
-                                @if ($k < ($secondIndexCategory->subCategories->count() - 1))
-                                    <li class="line">|</li>
-                                @endif
-                           @endforeach
-                        </ul><!--//news-type-->
-                    </div>
-                </div>
-                <div class="news-list cf" id="tab-demo" style="display: block">
-                    <div class="box-news cf">
-                        @foreach ($secondIndexCategory->list_posts->splice(0, 4) as $index => $post)
-                            @if ($index == 0)
-                                <div class="item01">
-                                    <a href="{{url($post->slug.'.html')}}" class="thumbs">
-                                        <img src="{{url('img/cache/300x177/'.$post->image)}}" alt="">
-                                    </a>
-                                    <h3>
-                                        <a href="{{url($post->slug.'.html')}}">{{$post->title}}</a>
-                                    </h3>
-                                    <p>
-                                        {{$post->desc}}
-                                    </p>
-                                </div>
-                            @else
-                                <div class="item02">
-                                    <a href="{{url($post->slug.'.html')}}" class="thumbs">
-                                        <img src="{{url('img/cache/110x70/'.$post->image)}}" alt="">
-                                    </a>
-                                    <h3>
-                                        <a href="{{url($post->slug.'.html')}}">{{$post->title}}</a>
-                                    </h3>
-                                </div>
-                            @endif
-
-
+    <!-- /endboxSlidePage -->
+    <section class="section mb0">
+        <div class="container">
+            <div class="contentLeft">
+                <!-- /endboxRecommended -->
+                <div class="boxNews clearFix">
+                    <h3 class="globalTitle">
+                        <a href="{{url('tin-tuc')}}">Tin mới nhất</a>
+                    </h3>
+                    <div class="listNews clearFix">
+                        @foreach ($newPosts as $post)
+                        <div class="item">
+                            <a href="{{url($post->slug.'.html')}}" class="thumb">
+                                <img src="{{url('img/cache/188x125', $post->image)}}" alt="{{$post->title}}">
+                            </a>
+                            <p>
+                                {{$post->title}}
+                            </p>
+                            <span class="datePost">{{$post->updated_at->format('d/m/Y')}}</span>
+                            <span class="countView">{{$post->views}} lượt xem</span>
+                        </div>
                         @endforeach
                     </div>
-                </div><!--//news-list-->
-                 @foreach ($secondIndexCategory->subCategories as $k=>$sub)
-                <div class="news-list cf" id="tab-2nd-{{$k}}">
-                    @foreach ($sub->list_posts->splice(0, 2) as $post)
-                    <article class="item">
-                        <a href="{{url($post->slug.'.html')}}" title="" class="thumbs">
-                            <img src="{{url('img/cache/300x177/'.$post->image)}}" alt="">
-                            <span>{{$sub->name}}</span>
-                        </a>
-                        <div class="data">
-                            <h3><a href="{{url($post->slug.'.html')}}" title="">{{$post->title}}</a></h3>
-                            <p>
-                               {{$post->desc}}
-                            </p>
-                            @if ($post->related_posts->count() > 0)
-                                <div class="related-post">
-                                    <ul>
-                                        @foreach ($post->related_posts->splice(0, 2) as $rPost)
-                                            <li><a href="{{url($rPost->slug.'.html')}}">{{$rPost->title}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                        </div>
-                    </article>
-                    @endforeach
-                </div><!--//news-list-->
-                    @endforeach
-                @endif
-                @foreach ($middleIndexBanner as $banner)
-                <div class="box-adv-center">
-                    <a href="{{$banner->url}}"><img src="{{url('files/'.$banner->image)}}" alt=""></a>
-                </div><!--//box-adv-center-->
-                @endforeach
-
-                @if ($thirdIndexCategory)
-                    <div class="boxNews cf">
-                        <h3 class="global-title">
-                            <a href="{{$thirdIndexCategory->slug}}">{{$thirdIndexCategory->name}}</a>
+                </div>
+                <!-- /endboxNews -->
+                <div class="boxConsult">
+                    <div class="titleConsult">
+                        <h3 class="globalTitle">
+                            <a href="{{url('hoi-dap')}}">Góc chuyên gia</a>
                         </h3>
-                        <div class="listNews cf">
-                            @foreach ($thirdIndexCategory->list_posts->splice(0, 6) as $post)
-                               <div class="item">
-                                <a href="{{url($post->slug.'.html')}}" class="thumb">
-                                    <img src="{{url('img/cache/188x125/'.$post->image)}}" alt="{{$post->title}}">
-                                </a>
-                                <h3><a href="{{url($post->slug.'.html')}}">{{$post->title}}</a></h3>
-                            </div>
+                    </div>
+                    <p>
+                        Với đội ngũ bác sĩ, dược sĩ nhiều năm kinh nghiệm và các chuyên gia hàng đầu của hãng dược phẩm Pleuran, chúng tôi luôn lắng nghe và sẵn sàng tư vấn với mong muốn mang tới sức khỏe toàn diện cho thế hệ mầm non Việt Nam.
+                    </p>
+                </div>
+                <div class="boxQuestion clearFix">
+                    <div class="areaQuestion">
+                        <div class="quoteMess">
+                            <p>
+                                Não của chúng ta phát triển nhanh và mạnh mẽ nhất là giai đoạn bào thai, bú mẹ và những năm ở tuổi mẫu giáo, đây cũng chính là giai đoạn não cần được cung cấp DHA nhất. Viên uống Bebirth với thành phần chứa Omega 3(DHA và EPA) cần thiết...
+                            </p>
+                        </div>
+                        <ul class="listQuestion" id="listQuestion">
+                            @foreach ($indexQuestions as $question)
+                               <li><a href="{{url('hoi-dap', $question->slug)}}">{{$question->title}}</a></li>
                             @endforeach
+                        </ul>
+                        <p class="seeMore">
+                            <a href="{{url('hoi-dap')}}">Xem thêm</a>
+                        </p>
+                        <div class="areaAsk">
+                            <a href="{{url('hoi-dap')}}" class="btnAsk">Đặt câu hỏi tại đây</a>
                         </div>
                     </div>
-                @endif
-            </div><!--//col-left-->
+                    <div class="areaAvatar">
+                        <img src="{{url('frontend/imgs/bg/avatar.png')}}" alt="">
+                    </div>
+                </div>
+            </div>
             @include('frontend.right_index')
-            <div class="clear"></div>
-        </div><!--//layout-home-->
-        <div class="clear"></div>
-    </section><!--//section-->
-
+        </div>
+    </section>
 @endsection

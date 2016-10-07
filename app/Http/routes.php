@@ -47,22 +47,12 @@ Route::group(['middleware' => 'web'], function () {
 #Frontend Routes
 
 Route::get('/', 'FrontendController@index');
-
-
 Route::get('lien-he', 'FrontendController@contact');
-
 Route::get('video/{value?}', 'FrontendController@video');
-
 Route::get('phan-phoi/{value?}', 'FrontendController@delivery');
-
 Route::post('save_question', 'FrontendController@saveQuestion');
-
 Route::get('tag/{value}', 'FrontendController@tag');
-
 Route::get('search', 'FrontendController@search');
-
 Route::get('product', 'FrontendController@product');
-
-Route::get('cau-hoi-thuong-gap/{value?}', 'FrontendController@question');
-
+Route::get('hoi-dap/{value?}', 'FrontendController@question');
 Route::get('{value}', 'FrontendController@main');

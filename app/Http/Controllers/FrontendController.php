@@ -91,12 +91,12 @@ class FrontendController extends Controller
                     'meta_image' => url('img/cache/120x120/'.$mainContent->image)
                 ];
                 break;
-            case 'cau-hoi-thuong-gap' :
+            case 'hoi-dap' :
                 return [
                     'meta_title' => !empty($meta['title']) ? $meta['title'] : $settings['META_QUESTION_TITLE'],
                     'meta_desc' => !empty($meta['desc']) ? $meta['desc'] : $settings['META_QUESTION_DESC'],
                     'meta_keywords' => !empty($meta['keywords']) ? $meta['keywords'] : $settings['META_QUESTION_KEYWORDS'],
-                    'meta_url' => ($mainContent) ? url('cau-hoi-thuong-gap/' . $mainContent->slug) : url('cau-hoi-thuong-gap'),
+                    'meta_url' => ($mainContent) ? url('hoi-dap/' . $mainContent->slug) : url('hoi-dap'),
                     'meta_image' => ($mainContent)?  url('img/cache/120x120/'.$mainContent->image) : $defaultLogo
                 ];
                 break;
@@ -126,34 +126,24 @@ class FrontendController extends Controller
     {
         $page = 'index';
 
-        $topIndexCategory = Category::where('index_display', 1)->whereNull('parent_id')->get();
-        
-        if ($topIndexCategory->count() > 0) {
-            $topIndexCategory = $topIndexCategory->first();
-        } else {
-            $topIndexCategory = null;
-        }
+        $indexFeatureSlider = Post::where('status', true)
+        ->where('index_slide', true)
+        ->latest('updated_at')
+        ->limit(4)
+        ->get();
 
+        $newsCategoryId = Category::where('slug','tin-tuc')->first()->id;
 
-        $secondIndexCategory = Category::where('index_display', 2)->whereNull('parent_id')->get();
+        $newPosts = Post::where('status', true)
+            ->where('category_id', $newsCategoryId)
+            ->latest('updated_at')
+            ->limit(4)
+            ->get();
 
-        if ($secondIndexCategory->count() > 0) {
-            $secondIndexCategory = $secondIndexCategory->first();
-        }  else {
-            $secondIndexCategory = null;
-        }
+        $indexQuestions = Question::where('status', true)->latest('updated_at')->limit(3)->get();
 
-        $thirdIndexCategory = Category::where('index_display', 3)->whereNull('parent_id')->get();
-
-        if ($thirdIndexCategory->count() > 0) {
-            $thirdIndexCategory = $thirdIndexCategory->first();
-        } else {
-            $thirdIndexCategory = null;
-        }
-
-        $middleIndexBanner = Banner::where('status', true)->where('position', 'middle_index')->get();
-        
-        return view('frontend.index', compact('topIndexCategory', 'secondIndexCategory', 'thirdIndexCategory', 'middleIndexBanner', 'page'))->with($this->generateMeta());
+        return view('frontend.index', compact('page', 'indexFeatureSlider', 'newPosts', 'indexQuestions'))
+            ->with($this->generateMeta());
     }
 
     public function contact()
@@ -240,7 +230,6 @@ class FrontendController extends Controller
     public function tag($value)
     {
         $page = 'tag';
-        $middleIndexBanner = Banner::where('status', true)->where('position', 'middle_index')->get();
 
         $tag = Tag::where('slug', $value)->get();
 
@@ -259,7 +248,7 @@ class FrontendController extends Controller
                 ->orderBy('updated_at', 'desc')
                 ->paginate(10);
 
-            return view('frontend.tag', compact('posts', 'tag', 'middleIndexBanner', 'page'))->with
+            return view('frontend.tag', compact('posts', 'tag', 'page'))->with
             ($this->generateMeta([
                 'title' => $meta_title,
                 'desc' => $meta_desc,
@@ -270,12 +259,13 @@ class FrontendController extends Controller
     
     public function search(Request $request) 
     {
+        $page = 'search';
         if ($request->input('q')) {
-            $middleIndexBanner = Banner::where('status', true)->where('position', 'middle_index')->get();
+
             $keyword = $request->input('q');
             $posts = Post::publish()->where('title', 'LIKE', '%' . $keyword . '%')->paginate(10);
 
-            return view('frontend.search', compact('posts', 'keyword', 'middleIndexBanner'))->with($this->generateMeta('tag', [
+            return view('frontend.search', compact('posts', 'keyword', 'page'))->with($this->generateMeta('tag', [
                 'title' => 'Tìm kiếm cho từ khóa ' . $keyword,
                 'desc' => 'Tìm kiếm cho từ khóa ' . $keyword,
                 'keywords' => $keyword,
@@ -286,16 +276,12 @@ class FrontendController extends Controller
     public function product()
     {
         $page = 'product';
-
-        $middleIndexBanner = Banner::where('status', true)->where('position', 'middle_index')->get();
-
         $product = Product::latest('updated_at')->first();
-
         $meta_title = ($product->seo_title) ? $product->seo_title : $product->title;
         $meta_desc = $product->desc;
         $meta_keywords = $product->keywords;
 
-        return view('frontend.product', compact('product', 'middleIndexBanner', 'page'))->with($this->generateMeta('product', [
+        return view('frontend.product', compact('product', 'page'))->with($this->generateMeta('product', [
             'title' => $meta_title,
             'desc' => $meta_desc,
             'keywords' => $meta_keywords,
@@ -304,8 +290,7 @@ class FrontendController extends Controller
 
     public function question($value = null)
     {
-        $middleIndexBanner = Banner::where('status', true)->where('position', 'middle_index')->get();
-        $page = 'cau-hoi-thuong-gap';
+        $page = 'hoi-dap';
         $mainQuestion = null;
         $meta_title = $meta_desc = $meta_keywords = null;
         if ($value) {
@@ -315,7 +300,8 @@ class FrontendController extends Controller
             $meta_keywords = $mainQuestion->keywords;
         }
         $questions = Question::publish()->paginate(10);
-        return view('frontend.question', compact('questions', 'mainQuestion', 'middleIndexBanner', 'page'))->with($this->generateMeta('cau-hoi-thuong-gap', [
+        return view('frontend.question', compact('questions', 'mainQuestion', 'page'))
+            ->with($this->generateMeta('hoi-dap', [
             'title' => $meta_title,
             'desc' => $meta_desc,
             'keywords' => $meta_keywords,
@@ -324,9 +310,6 @@ class FrontendController extends Controller
 
     public function main($value)
     {
-
-        $middleIndexBanner = Banner::where('status', true)->where('position', 'middle_index')->get();
-        
         if (preg_match('/([a-z0-9\-]+)\.html/', $value, $matches)) {
 
             $post = Post::where('slug', $matches[1])->first();
@@ -341,7 +324,7 @@ class FrontendController extends Controller
             
             $page = $post->category->slug;
 
-            return view('frontend.post', compact('post', 'latestNews', 'middleIndexBanner', 'page'))->with($this->generateMeta('post', [
+            return view('frontend.post', compact('post', 'latestNews', 'page'))->with($this->generateMeta('post', [
                 'title' => ($post->seo_title) ? $post->seo_title : $post->title,
                 'desc' => $post->desc,
                 'keyword' => ($post->tagList) ? implode(',', $post->tagList) : null,
@@ -368,7 +351,7 @@ class FrontendController extends Controller
             $page = $category->slug;
 
             return view('frontend.category', compact(
-                'category', 'posts', 'page','middleIndexBanner'
+                'category', 'posts', 'page'
             ))->with($this->generateMeta('category', [
                 'title' => ($category->seo_name) ?  $category->seo_name : $category->name,
                 'desc' =>  ($category->desc)? $category->desc : null,

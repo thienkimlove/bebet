@@ -26,10 +26,10 @@
                 {!! Form::text('url', null, ['class' => 'form-control']) !!}
             </div>
 
-                <div class="form-group">
-                    {!! Form::label('position', 'Position') !!}
-                    {!! Form::text('position', null, ['class' => 'form-control']) !!}
-                </div>
+            <div class="form-group">
+                {!! Form::label('position', 'Position') !!}
+                {!! Form::select('position', config('banner'), null, ['class' => 'form-control']) !!}
+            </div>
 
             <div class="form-group">
                 {!! Form::label('image', 'Image') !!}

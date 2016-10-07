@@ -29,7 +29,7 @@
                                     <td>{{$banner->id}}</td>
                                     <td>{{$banner->url}}</td>
                                     <td><img src="{{url('img/cache/120x120/' . $banner->image)}}" /></td>
-                                    <td>{{$banner->position}}</td>
+                                    <td>{{config('banner')[$banner->position]}}</td>
                                     <td>{{ ($banner->status) ? 'Yes' : 'No'  }}</td>
                                     <td>
                                         <button id-attr="{{$banner->id}}" class="btn btn-primary btn-sm edit-banner" type="button">Edit</button>&nbsp;
