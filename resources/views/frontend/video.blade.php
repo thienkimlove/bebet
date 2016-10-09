@@ -13,11 +13,13 @@
                     <h3 class="globalTitle">
                         <a href="{{url('video')}}">Video</a>
                     </h3>
+                    @if ($mainVideo)
                     <div class="hotVideo clearFix">
                         <div class="thumbVideo">
                             <iframe width="100%" height="315" src="{{$mainVideo->url}}" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
+                    @endif
                     <h3>
                         Video nổi bật
                     </h3>
