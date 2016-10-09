@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Banner;
+use App\Product;
 use App\Video;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,10 +28,20 @@ class ViewComposerProvider extends ServiceProvider
 
         view()->composer('frontend.header', function ($view) {
             $view->with('topBanners',  Banner::where('status', true)->where('position', 'top')->get());
+            $view->with('headerProducts', Product::all());
+        });
+
+        view()->composer('frontend.left_banner', function ($view) {
+            $view->with('leftBanners',  Banner::where('status', true)->where('position', 'left')->limit(2)->get());
+        });
+
+        view()->composer('frontend.right', function ($view) {
+            $view->with('rightNormalBanners',  Banner::where('status', true)->where('position', 'right_normal')->limit(1)->get());
+            $view->with('rightProducts',  Product::all());
         });
 
         view()->composer('frontend.right_index', function ($view) {
-            $view->with('rightBanners',  Banner::where('status', true)->where('position', 'right')->get());
+            $view->with('rightBanners',  Banner::where('status', true)->where('position', 'right_index')->get());
             $view->with('featureVideos',  Video::latest('updated_at')->limit(3)->get());
         });
     }

@@ -11,6 +11,11 @@
             <li><a href="{{url('cam-nang-me-va-be')}}">Cẩm nang<br>mẹ và bé</a></li>
             <li>
                 <a href="{{url('san-pham')}}">Be Birth</a>
+                <ul class="hasSub">
+                    @foreach ($headerProducts as $k => $product)
+                      <li class="color0{{$k+1}}"><a href="{{url('san-pham', $product->slug)}}">{{$product->title}}</a></li>
+                    @endforeach
+                </ul>
             </li>
             <li><a href="{{url('tin-tuc')}}">Tin tức</a></li>
             <li>

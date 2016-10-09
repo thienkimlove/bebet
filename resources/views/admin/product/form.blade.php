@@ -43,19 +43,19 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('content_tab1', 'Thông tin sản phẩm') !!}
+                {!! Form::label('content_tab1', 'Thành phần') !!}
                 {!! Form::textarea('content_tab1', null, ['class' => 'form-control ckeditor']) !!}
             </div>
 
-          {{--  <div class="form-group">
-                {!! Form::label('content_tab2', 'NHẬN BIẾT BAO BÌ') !!}
+          -  <div class="form-group">
+                {!! Form::label('content_tab2', 'Vì sao nên chọn') !!}
                 {!! Form::textarea('content_tab2', null, ['class' => 'form-control ckeditor']) !!}
             </div>
 
             <div class="form-group">
-                {!! Form::label('content_tab3', 'Hướng dẫn sử dụng') !!}
+                {!! Form::label('content_tab3', 'Câu hỏi thường gặp') !!}
                 {!! Form::textarea('content_tab3', null, ['class' => 'form-control ckeditor']) !!}
-            </div>--}}
+            </div>
 
             <div class="form-group">
                 {!! Form::label('image', 'Image') !!}

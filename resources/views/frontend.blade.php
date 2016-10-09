@@ -97,6 +97,7 @@
             </ul>
         </div>
     </section>
+    @include('frontend.left_banner')
 @endif
 @include('frontend.header')
 <!-- /endHeader -->

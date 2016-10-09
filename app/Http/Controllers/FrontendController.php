@@ -273,15 +273,23 @@ class FrontendController extends Controller
         }
     }
 
-    public function product()
+    public function product($value = null)
     {
         $page = 'product';
-        $product = Product::latest('updated_at')->first();
+        $product = ($value) ? Product::where('slug', $value)->first() : Product::latest('updated_at')->first();
         $meta_title = ($product->seo_title) ? $product->seo_title : $product->title;
         $meta_desc = $product->desc;
         $meta_keywords = $product->keywords;
 
-        return view('frontend.product', compact('product', 'page'))->with($this->generateMeta('product', [
+        $latestNews = Post::publish()
+            ->latest('updated_at')
+            ->limit(6)
+            ->get();
+
+        $middleIndexBanner = Banner::where('status', true)->where('position', 'post_middle')->get();
+
+
+        return view('frontend.product', compact('product', 'page', 'latestNews', 'middleIndexBanner'))->with($this->generateMeta('product', [
             'title' => $meta_title,
             'desc' => $meta_desc,
             'keywords' => $meta_keywords,
@@ -292,6 +300,7 @@ class FrontendController extends Controller
     {
         $page = 'hoi-dap';
         $mainQuestion = null;
+
         $meta_title = $meta_desc = $meta_keywords = null;
         if ($value) {
             $mainQuestion = Question::where('slug', $value)->first();
@@ -312,6 +321,7 @@ class FrontendController extends Controller
     {
         if (preg_match('/([a-z0-9\-]+)\.html/', $value, $matches)) {
 
+            $middleIndexBanner = Banner::where('status', true)->where('position', 'post_middle')->get();
             $post = Post::where('slug', $matches[1])->first();
             $post->update(['views' => (int) $post->views + 1]);
 
@@ -324,7 +334,7 @@ class FrontendController extends Controller
             
             $page = $post->category->slug;
 
-            return view('frontend.post', compact('post', 'latestNews', 'page'))->with($this->generateMeta('post', [
+            return view('frontend.post', compact('post', 'latestNews', 'page', 'middleIndexBanner'))->with($this->generateMeta('post', [
                 'title' => ($post->seo_title) ? $post->seo_title : $post->title,
                 'desc' => $post->desc,
                 'keyword' => ($post->tagList) ? implode(',', $post->tagList) : null,
