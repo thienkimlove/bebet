@@ -46,6 +46,7 @@
                     </div>
                     <!-- /endTab03 -->
                 </div>
+                @if ($product->related_post)
                 <div class="boxOrther">
                     <h3 class="globalTitle">
                         <a href="#">Tin liên quan</a>
@@ -56,6 +57,7 @@
                         @endforeach
                     </ul>
                 </div>
+                @endif
                 @foreach ($middleIndexBanner as $banner)
                     <div class="boxAdv">
                         <a href="{{$banner->url}}"><img src="{{url('files/'.$banner->image)}}" alt=""></a>
