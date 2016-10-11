@@ -5,7 +5,7 @@
         <div class="container">
             <ul class="breadCrumb clearFix">
                 <li><a href="{{url('/')}}">Trang chủ</a></li>
-                <li class="active">Cẩm nang mẹ và bé</li>
+                <li class="active">{{$category->name}}</li>
             </ul>
                 <div class="contentLeft">
                 <div class="boxNews clearFix">
@@ -18,7 +18,7 @@
                           <div class="item clearFix">
                             <h3><a href="{{url($post->slug.'.html')}}">{{$post->title}}</a></h3>
                             <a href="#" class="thumb">
-                                <img src="{{url('img/cache/220x80', $post->image)}}" alt="{{$post->title}}" width="220" height="80">
+                                <img src="{{url('img/cache/220x125', $post->image)}}" alt="{{$post->title}}" width="220" height="80">
                             </a>
                             <span class="date">{{$post->updated_at->format('d/m/Y')}}</span> | <span class="tag">{{ ($post->tags->count() > 0) ? $post->tags->first()->name : ''  }}</span>
                             <p>

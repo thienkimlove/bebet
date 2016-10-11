@@ -119,6 +119,10 @@ return array(
             return $image->fit(220, 80);
         },
 
+        '220x125' => function($image) {
+            return $image->fit(220, 125);
+        },
+
 
 
     ),
