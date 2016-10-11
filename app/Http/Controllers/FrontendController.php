@@ -157,9 +157,7 @@ class FrontendController extends Controller
         $page = 'video';
         $mainVideo = null;
         $meta_title = $meta_desc = $meta_keywords = null;
-        $videos = Video::paginate(6);
-
-        $latestVideos = Video::latest('updated_at')->limit(5)->get();
+        $videos = Video::paginate(9);
 
         if ($videos->count() > 0) {
             $mainVideo = $videos->first();
@@ -174,7 +172,7 @@ class FrontendController extends Controller
         }
 
 
-        return view('frontend.video', compact('videos', 'mainVideo', 'latestVideos', 'page'))->with($this->generateMeta('video', [
+        return view('frontend.video', compact('videos', 'mainVideo', 'page'))->with($this->generateMeta('video', [
             'title' => $meta_title,
             'desc' => $meta_desc,
             'keywords' => $meta_keywords,

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="{{url('frontend/css/colorbox.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{url('frontend/css/bebirth.css')}}" type="text/css"/>
     <title>{{$meta_title}}</title>
 
@@ -141,6 +142,9 @@
 <script type="text/javascript" src="{{url('frontend/js/jquery.matchHeight-min.js')}}"></script>
 <script type="text/javascript" src="{{url('frontend/js/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{url('frontend/js/scrollReveal.js')}}"></script>
+<script type="text/javascript" src="{{url('frontend/js/jquery.colorbox-min.js')}}"></script>
+<script type="text/javascript" src="{{url('frontend/js/videoView.js')}}"></script>
+<script type="text/javascript" src="{{url('frontend/js/slideAdvs.js')}}"></script>
 <script type="text/javascript" src="{{url('frontend/js/common.js')}}"></script>
 @yield('footer_script')
 </body>
