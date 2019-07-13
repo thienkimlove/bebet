@@ -33,6 +33,10 @@
                         <div class="addthis_native_toolbox"></div>
                     </div>
 
+                    <div class="boxComment">
+                        <div class="fb-comments" data-href="{{url($post->slug.'.html')}}" data-numposts="5"></div>
+                    </div>
+
                     <div class="released-post">
                         <div class="title">
                             <h3 class="global-title"><a href="#">Tin liên quan</a></h3>

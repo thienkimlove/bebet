@@ -17,12 +17,8 @@
                         <a href="{{url('hoi-dap', $headQuestion->slug)}}" class="thumb">
                             <img src="{{url('frontend/imgs/bg/avatar.png')}}" alt="">
                         </a>
-                        <h3>
-                            {{$headQuestion->title}}
-                        </h3>
                         <p>
                             Độc giả có thể gửi câu hỏi trực tiếp vào bảng đặt câu hỏi dưới đây, hoặc gửi trực tiếp vào Email:
-                            <a href="mailto:tuvansuckhoe.bsdinh@gmail.com">tuvansuckhoe.bsdinh@gmail.com</a>
                             <a href="mailto:contact@tuelinh.com">contact@tuelinh.com</a>
                         </p>
 

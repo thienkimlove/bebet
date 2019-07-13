@@ -14,6 +14,7 @@
     <!-- Custom Fonts -->
     <link href="{{ url('/css/admin.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url('/css/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{ url('/js/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet" />
 
 
 </head>
@@ -39,6 +40,7 @@
 <script src="{{url('/js/admin.js')}}"></script>
 <script src="{{url('/bower_components/ckeditor/ckeditor.js')}}"></script>
 <script src="{{url('/js/select2.min.js')}}"></script>
+<script src="{{url('js/datetimepicker/build/jquery.datetimepicker.full.min.js')}}"></script>
 @yield('footer')
 </body>
 

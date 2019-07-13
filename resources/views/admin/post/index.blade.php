@@ -50,15 +50,15 @@
                                     <td><img src="{{url('img/cache/120x120/' . $post->image)}}" /></td>
                                     <td>{{ ($post->index_slide) ? 'Yes' : 'No'  }}</td>
                                     <td>{{ ($post->status) ? 'Yes' : 'No'  }}</td>
-                                    <td>
+                                  <td>
                                         <button id-attr="{{$post->id}}" class="btn btn-primary btn-sm edit-post" type="button">Edit</button>&nbsp;
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['admin.posts.destroy', $post->id]]) !!}
+										<br/>
                                         <button type="submit" class="btn btn-danger btn-mini">Delete</button>
                                         {!! Form::close() !!}
-
                                         <button class="btn btn-primary btn-sm" type="button">
-                                            <a target="_blank" href="{{url($post->slug.'.html')}}">View Post</a>
-                                        </button>&nbsp;
+                                            <a target="_blank" href="{{url($post->slug.'.html')}}" style="color:#FFFFFF">View Post</a>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach

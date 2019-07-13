@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Banner;
 use App\Product;
 use App\Video;
+use App\Post;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerProvider extends ServiceProvider
@@ -29,7 +30,7 @@ class ViewComposerProvider extends ServiceProvider
         view()->composer('frontend.header', function ($view) {
             $view->with('topBanners',  Banner::where('status', true)->where('position', 'top')->get());
             $view->with('topNormalBanners',  Banner::where('status', true)->where('position', 'top_normal')->get());
-            $view->with('headerProducts', Product::all());
+            $view->with('headerProducts', Product::where('slug', '!=', 'be-birth')->get());
         });
 
         view()->composer('frontend.left_banner', function ($view) {
@@ -38,7 +39,8 @@ class ViewComposerProvider extends ServiceProvider
 
         view()->composer('frontend.right', function ($view) {
             $view->with('rightNormalBanners',  Banner::where('status', true)->where('position', 'right_normal')->limit(1)->get());
-            $view->with('rightProducts',  Product::all());
+            $view->with('rightProducts',  Product::where('slug', '!=', 'be-birth')->get());
+            $view->with('rightNews',  Post::publish()->latest('updated_at')->limit(5)->get());
         });
 
         view()->composer('frontend.right_index', function ($view) {

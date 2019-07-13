@@ -13,8 +13,7 @@
                     <div class="imgNumber imgN01" >
                         <div class="contentImg">
                             <p>
-                                Dây chuyền sản xuất GMP WHO
-                            </p>
+                            <a href="http://www.bebirth.vn/san-pham/be-birth" target="_blank">Dây chuyền sản xuất GMP WHO</a>                            </p>
                         </div>
                     </div>
                     <span class="imgNumber icon01"></span>
@@ -23,40 +22,36 @@
                     <span class="imgNumber icon04"></span>
                     <div class="imgNumber imgN02 wow zoom-in" data-scroll-reveal="enter bottom, after 0.8s">
                         <div class="contentImg">
-                            <p>Bổ sung hơn 20 vitamin, các nguyên tố vi lượng</p>
+                            <p><a href="http://www.bebirth.vn/vitamin-duong-chat-thiet-yeu-cho-ba-bau.html" target="_blank">Bổ sung hơn 20 vitamin, các nguyên tố vi lượng</a></p>
                         </div>
                     </div>
                     <div class="imgNumber imgN03 wow zoom-in" data-scroll-reveal="enter top, after 0.8s">
                         <div class="contentImg">
-                            <p>Các dược liệu quý cần thiết cho mẹ và bé</p>
+                            <p><a href="http://www.bebirth.vn/acid-folic-duong-chat-vang-cho-ba-bau.html" target="_blank">Các dược liệu quý cần thiết cho mẹ và bé</a></p>
                         </div>
                     </div>
                     <div class="imgNumber imgN04 wow zoom-in" data-scroll-reveal="enter bottom, after 0.8s">
                         <div class="contentImg">
                             <p>
-                                Bổ sung OMEGA 3(DHA và EPA) từ nhà cung cấp EPAX - Nhà cung cấp OMEGA 3 Số 1 thế giới
-                            </p>
+                            <a href="http://www.bebirth.vn/vai-tro-cua-omega3-doi-voi-suc-khoe-ba-bau.html" target="_blank">Bổ sung OMEGA 3(DHA và EPA) từ nhà cung cấp EPAX - Nhà cung cấp OMEGA 3 Số 1 thế giới                            </a></p>
                         </div>
                     </div>
                     <div class="imgNumber imgN05 wow zoom-in" data-scroll-reveal="enter top, after 0.8s">
                         <div class="contentImg">
                             <p>
-                                Thuận tiện sử dụng
-                            </p>
+                            <a href="http://www.bebirth.vn/san-pham/be-birth" target="_blank">Thuận tiện sử dụng</a>                            </p>
                         </div>
                     </div>
                     <div class="imgNumber imgN06 wow zoom-in" data-scroll-reveal="enter bottom, after 0.8s">
                         <div class="contentImg">
                             <p>
-                                Công thức chuyên biệt phù hợp cho từng giai đoạn của mẹ và thai nhi
-                            </p>
+                            <a href="http://www.bebirth.vn/san-pham/be-birth" target="_blank">Công thức chuyên biệt phù hợp cho từng giai đoạn của mẹ và thai nhi                            </a></p>
                         </div>
                     </div>
                     <div class="imgNumber imgN07 wow zoom-in" data-scroll-reveal="enter top, after 0.8s">
-                        <div class="contentImg">
-                            <p>
-                                Nguyen liệu và chất lượng Châu Âu
-                            </p>
+                      <div class="contentImg">
+                          <p>
+                          <a href="http://www.bebirth.vn/san-pham/be-birth" target="_blank">Nguyên liệu và chất lượng Châu Âu                          </a></p>
                         </div>
                     </div>
                 </div>
@@ -73,11 +68,11 @@
                 <div class="owl-carousel" id="slidePage">
                     @foreach ($indexFeatureSlider as $k => $slider)
                     <div class="{{($k < 2) ? 'item wow slideInLeft' : 'item wow slideInRight'}}" data-wow-duration="{{($k < 2) ? '0.8s' : '1s'}}" data-wow-delay="1s">
-                        <a href="{{url($slider.'.html')}}" title="{{$slider->title}}">
+                        <a href="{{url($slider->slug.'.html')}}" title="{{$slider->title}}">
                             <img src="{{url('img/cache/274x174', $slider->image)}}" width="274" height="174" alt=""/>
                         </a>
                         <h3>
-                            <a href="{{url($slider.'.html')}}">
+                            <a href="{{url($slider->slug.'.html')}}">
                                 {{$slider->title}}
                             </a>
                         </h3>
@@ -106,7 +101,7 @@
                                 <img src="{{url('img/cache/188x125', $post->image)}}" alt="{{$post->title}}">
                             </a>
                             <p>
-                                {{$post->title}}
+                               <a href="{{url($post->slug.'.html')}}" class="thumb"> {{$post->title}}</a>
                             </p>
                             <span class="datePost">{{$post->updated_at->format('d/m/Y')}}</span>
                             <span class="countView">{{$post->views}} lượt xem</span>

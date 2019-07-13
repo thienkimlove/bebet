@@ -24,12 +24,9 @@
                         </div>
                         <div class="boxTags">
                             <span>Từ khóa</span>
-                            <a href="" title="">Thuốc diệt chuột</a>
-                            <a href="" title="">Thuốc tốt</a>
-                            <a href="" title="">Thuốc hay</a>
-                        </div>
-                        <div class="boxComment">
-                            <div class="fb-comments" data-href="{{url('san-pham', $product->slug)}}" data-numposts="5"></div>
+                            @foreach ($product->tags as $tag)
+                                <a href="{{url('tu-khoa/'.$tag->slug)}}" title="">{{$tag->name}}</a>
+                            @endforeach
                         </div>
                     </div>
                     <!-- endTab01 -->
@@ -63,17 +60,16 @@
                         <a href="{{$banner->url}}"><img src="{{url('files/'.$banner->image)}}" alt=""></a>
                     </div><!--//box-adv-center-->
                 @endforeach
-
                 <div class="boxNews">
                     <h3 class="globalTitle"><a href="#">Tin mới nhất</a></h3>
                     <div class="listNews clearFix">
                         @foreach ($latestNews as $post)
                             <div class="item">
-                                <a href="#" class="thumb">
+                                <a href="{{url($post->slug.'.html')}}" class="thumb">
                                     <img src="{{url('img/cache/130x80', $post->image)}}" alt="List news">
                                 </a>
                                 <p>
-                                    {{$post->title}}
+                                    <a href="{{url($post->slug.'.html')}}">{{$post->title}}</a>
                                 </p>
                                 <span class="datePost">{{$post->updated_at->format('d/m/Y')}}</span>
                                 <span class="countView">{{$post->views}} lượt xem</span>
@@ -81,10 +77,13 @@
                         @endforeach
                     </div>
                 </div>
+                        <div class="boxComment">
+                            <div class="fb-comments" data-href="{{url('san-pham', $product->slug)}}" data-numposts="5"></div>
+                        </div>
                 <!-- //listButton -->
                 <ul class="listButton clearFix">
                     <li class="ilocal"><a href="{{url('phan-phoi')}}">Xem điểm bán C Nattu</a></li>
-                    <li class="icall"><a href="{{url('lien-he')}}">1900 6482 - 0912 571 190</a></li>
+                    <li class="icall"><a href="{{url('lien-he')}}">1800 1190 - 0912 571 190</a></li>
                 </ul>
             </div>
             @include('frontend.right')

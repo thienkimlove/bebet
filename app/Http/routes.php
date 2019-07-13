@@ -42,10 +42,19 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('admin/products', 'ProductsController');
     Route::resource('admin/deliveries', 'DeliveriesController');
     Route::resource('admin/banners', 'BannersController');
+    Route::resource('admin/contacts', 'ContactsController');
+    Route::resource('admin/orders', 'OrdersController');
+    Route::get('admin/export/{content}', 'AdminController@export');
 });
 
 #Frontend Routes
 
+#landing
+Route::get('landingpage/{page}', 'FrontendController@landing');
+
+
+Route::post('create-order', 'FrontendController@createOrder');
+Route::post('save-contact', 'FrontendController@saveContact');
 Route::get('/', 'FrontendController@index');
 Route::get('lien-he', 'FrontendController@contact');
 Route::get('video/{value?}', 'FrontendController@video');

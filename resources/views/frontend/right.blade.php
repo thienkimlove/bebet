@@ -37,5 +37,18 @@
         </div>
     </div>
     <!-- /endSale -->
+    <div class="boxHot clearFix sideBar">
+        <h3 class="globalTitle"><a href="{{url('tin-tuc')}}">Tin nổi bật</a></h3>
+        @foreach ($rightNews as $rightNew)
+        <div class="item clearFix">
+            <a href="{{url($rightNew->slug.'.html')}}" class="thumb">
+                <img src="{{url('img/cache/100x80', $rightNew->image)}}" alt="hot" width="100" height="80">
+            </a>
+            <h4>
+                <a href="{{url($rightNew->slug.'.html')}}">{{$rightNew->title}}</a>
+            </h4>
+        </div>
+         @endforeach
+    </div>
     <!-- /endHot -->
 </div>

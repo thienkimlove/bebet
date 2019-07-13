@@ -27,7 +27,7 @@
                     @foreach ($videos as $video)
                         <article class="item">
                             <a class='youtube thumb' href="{{(strpos($video->url, 'mode=transparent') === false) ? $video->url.'?rel=0&amp;wmode=transparent' : $video->url}}">
-                                <img src="{{url('img/cache/303x130/'.$video->image)}}" width="303" height="130" alt=""/>
+                                <img src="{{url('img/cache/216x142/'.$video->image)}}" width="303" height="130" alt=""/>
                             </a>
                             <h3>
                                 <a href="{{url('video/'.$video->slug)}}" title="">{{$video->title}}</a>

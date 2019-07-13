@@ -17,7 +17,7 @@
                         @foreach ($posts as $post)
                           <div class="item clearFix">
                             <h3><a href="{{url($post->slug.'.html')}}">{{$post->title}}</a></h3>
-                            <a href="#" class="thumb">
+                            <a href="{{url($post->slug.'.html')}}" class="thumb">
                                 <img src="{{url('img/cache/220x125', $post->image)}}" alt="{{$post->title}}" width="220" height="80">
                             </a>
                             <span class="date">{{$post->updated_at->format('d/m/Y')}}</span> | <span class="tag">{{ ($post->tags->count() > 0) ? $post->tags->first()->name : ''  }}</span>

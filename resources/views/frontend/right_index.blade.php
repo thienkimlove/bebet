@@ -24,7 +24,7 @@
                             <img src="{{url('img/cache/100x60', $video->image)}}" alt="" width="100" height="60">
                         </a>
                         <p>
-                            {{$video->title}}
+                            <a href="{{url('video/'.$video->slug)}}" title="">{{$video->title}}</a>
                         </p>
                     </div>
                     @endforeach

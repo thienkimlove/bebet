@@ -123,7 +123,9 @@ return array(
             return $image->fit(220, 125);
         },
 
-
+        '216x142' => function($image) {
+            return $image->fit(216, 142);
+        },
 
     ),
 

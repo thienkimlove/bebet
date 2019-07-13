@@ -17,11 +17,10 @@
                             <h3>
                                 {{$headQuestion->title}}
                             </h3>
-                            <p>
+                            <h4>
                                 Độc giả có thể gửi câu hỏi trực tiếp vào bảng đặt câu hỏi dưới đây, hoặc gửi trực tiếp vào Email:
-                                <a href="mailto:tuvansuckhoe.bsdinh@gmail.com">tuvansuckhoe.bsdinh@gmail.com</a>
                                 <a href="mailto:contact@tuelinh.com">contact@tuelinh.com</a>
-                            </p>
+                            </h4>
 
                         </div>
                     @endif

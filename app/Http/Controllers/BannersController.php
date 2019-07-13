@@ -57,7 +57,12 @@ class BannersController extends AdminController
         $data = $request->all();
 
         $data['status'] = ($request->input('status') == 'on') ? true : false;
-        $data['image'] =  ($request->file('image') && $request->file('image')->isValid()) ? $this->saveImage($request->file('image')) : '';
+
+        if ($request->file('image') && $request->file('image')->isValid()) {
+            $data['image'] = $this->saveImage($request->file('image'));
+        } else {
+            unset($data['image']);
+        }
 
         $banner->update($data);
 

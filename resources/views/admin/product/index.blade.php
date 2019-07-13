@@ -29,7 +29,8 @@
                                     <td><img src="{{url('img/cache/120x120/' . $product->image)}}" /></td>
                                     <td>
                                         <button id-attr="{{$product->id}}" class="btn btn-primary btn-sm edit-product" type="button">Edit</button>&nbsp;
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['admin.products.destroy', $product->id]]) !!}
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['admin.products.destroy', $product->id]]) !!}<br />
+                                        <br/>
                                         <button type="submit" class="btn btn-danger btn-mini">Delete</button>
                                         {!! Form::close() !!}
                                     </td>

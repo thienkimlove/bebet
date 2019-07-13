@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Banner;
 use App\Category;
+use App\Contact;
 use App\Delivery;
+use App\Order;
 use App\Post;
 use App\Product;
 use App\Question;
@@ -129,7 +131,7 @@ class FrontendController extends Controller
         $indexFeatureSlider = Post::where('status', true)
         ->where('index_slide', true)
         ->latest('updated_at')
-        ->limit(4)
+        ->limit(8)
         ->get();
 
         $newsCategoryId = Category::where('slug','tin-tuc')->first()->id;
@@ -137,13 +139,49 @@ class FrontendController extends Controller
         $newPosts = Post::where('status', true)
             ->where('category_id', $newsCategoryId)
             ->latest('updated_at')
-            ->limit(4)
+            ->limit(6)
             ->get();
 
         $indexQuestions = Question::where('status', true)->latest('updated_at')->limit(3)->get();
 
         return view('frontend.index', compact('page', 'indexFeatureSlider', 'newPosts', 'indexQuestions'))
             ->with($this->generateMeta());
+    }
+
+    public function landing($page)
+    {
+        $showMessage = false;
+
+        if (request()->has('success')) {
+            $showMessage = true;
+        }
+
+        return view($page, compact('showMessage'));
+    }
+
+
+    public function createOrder(Request $request)
+    {
+        $data = $request->all();
+        $site = $data['destination'];
+        Order::create($data);
+
+        if ($site == 'delivery') {
+            return redirect('phan-phoi?success=1#order_online');
+        } else if (strpos($site, 'bebirth') !== false) {
+            return redirect('landingpage/'.$site.'?success=1#order_online');
+        } else {
+            $post = Post::find($site);
+            return redirect($post->slug.'.html?success=1#order_online');
+        }
+
+
+    }
+
+    public function saveContact(Request $request)
+    {
+        Contact::create($request->all());
+        return redirect()->back();
     }
 
     public function contact()
@@ -182,6 +220,13 @@ class FrontendController extends Controller
 
     public function delivery($value = null)
     {
+
+        $showMessage = false;
+
+        if (request()->has('success')) {
+            $showMessage = true;
+        }
+
         $page = 'phan-phoi';
         $meta_title = $meta_desc = $meta_keywords = null;
         if ($value) {
@@ -200,7 +245,7 @@ class FrontendController extends Controller
             foreach (config('delivery')['area'] as $key => $area) {
                 $totalDeliveries[$area] = Delivery::where('area', $key)->get();
             }
-            return view('frontend.delivery', compact('totalDeliveries', 'page'))->with($this->generateMeta('phan-phoi', [
+            return view('frontend.delivery', compact('totalDeliveries', 'showMessage', 'page'))->with($this->generateMeta('phan-phoi', [
                 'title' => $meta_title,
                 'desc' => $meta_desc,
                 'keywords' => $meta_keywords,
@@ -340,6 +385,12 @@ class FrontendController extends Controller
     {
         if (preg_match('/([a-z0-9\-]+)\.html/', $value, $matches)) {
 
+            $showMessage = false;
+
+            if (request()->has('success')) {
+                $showMessage = true;
+            }
+
             $middleIndexBanner = Banner::where('status', true)->where('position', 'post_middle')->get();
             $post = Post::where('slug', $matches[1])->first();
             $post->update(['views' => (int) $post->views + 1]);
@@ -353,7 +404,7 @@ class FrontendController extends Controller
             
             $page = $post->category->slug;
 
-            return view('frontend.post', compact('post', 'latestNews', 'page', 'middleIndexBanner'))->with($this->generateMeta('post', [
+            return view('frontend.post', compact('post', 'latestNews', 'page', 'middleIndexBanner', 'showMessage'))->with($this->generateMeta('post', [
                 'title' => ($post->seo_title) ? $post->seo_title : $post->title,
                 'desc' => $post->desc,
                 'keyword' => ($post->tagList) ? implode(',', $post->tagList) : null,

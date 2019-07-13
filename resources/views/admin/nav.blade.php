@@ -137,6 +137,28 @@
                 </li>
 
                 <li>
+                    <a><i class="fa fa-files-o fa-fw"></i>Liên hệ<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+                        <li>
+                            <a href="{{url('admin/contacts')}}">List</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
+                <li>
+                    <a><i class="fa fa-files-o fa-fw"></i>Orders<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+                        <li>
+                            <a href="{{url('admin/orders')}}">List</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
+                <li>
                     <a><i class="fa fa-files-o fa-fw"></i>Settings<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
 
